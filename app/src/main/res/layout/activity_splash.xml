@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#231B15">
+
+    <ImageView android:id="@+id/splashscreen" android:layout_width="389dp"
+        android:layout_height="fill_parent"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"
+        android:background="#231B15" />
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World, splash"/>
+
+</LinearLayout>

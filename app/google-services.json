@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "649935654145",
+    "firebase_url": "https://pinpoint-f2775.firebaseio.com",
+    "project_id": "pinpoint-f2775",
+    "storage_bucket": "pinpoint-f2775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649935654145:android:e184f33da5489394",
+        "android_client_info": {
+          "package_name": "com.couchbase.todolite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649935654145-9aipv2lqt5ndm28cdkf26nb0erbqcb6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHWMS4Emq-LzL3CXZL4EykrwA7G-UAwH4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
