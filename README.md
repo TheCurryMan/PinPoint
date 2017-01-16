@@ -1,49 +1,27 @@
-## ToDo Lite for Android
+#Inspiration
+Navigating a large supermarket can be difficult and time-consuming. Even though there are aisle descriptions, they are often vague and it's impossible to remember where each category of products is located.
 
-[![Join the chat at https://gitter.im/couchbase/mobile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/couchbase/mobile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+#What it does
+Using various APIs and algorithms, our app generates a store layout bitmap and animates the path that the consumer should take to minimize the time spent at the store and to pick up all groceries.
 
-A shared todo app that shows how to use the [Couchbase Lite Android](https://github.com/couchbase/couchbase-lite-android) framework to embed a nonrelational ("NoSQL") document-oriented database in an Android app and sync it with [Couchbase Server](http://www.couchbase.com/nosql-databases/couchbase-server) in a public or private cloud.
+#How we built it
+##Bitmap
+As we didn't have access to an actual store layout, we created a mock bitmap in excel with 0's representing free space and 1's representing obstacles such as aisles, cashier counters etc. We then translated this into a bitmap of the whole store layout in Java.
 
-![screenshot](http://f.cl.ly/items/1K2e200t2D3s1l0i473e/ToDoLite.gif)
+##Pathfinding
+Our app uses an existing database from Supermarket API which when given a product name returns aisle number and other product information for many prominent retailers. Using information about the location such as "Aisle 11 Back" we would then plot an exact coordinate on the bitmap that fills within the bounds of Aisle 11 back. After adding all our products to the list and having all the bitmap coordinates, we then had to find the most optimal route between all the points. This is essentially a different use case for the Traveling Salesman Problem except starting and ending point are the same, so using a slightly modified genetic algorithm we calculated the most efficient (or close to most efficient) route. Because the algorithm did not account for obstacles between the positions of the products, we implemented the A* algorithm on the bitmap matrix to find the best path between the individual points to avoid aisle and other obstacles.
 
-## Get the code
+##Firebase and UI
+After adding an item to the grocery list and clicking the start button to map the path, the Supermarket API searches for that item's aisle number. The aisle number is a key for the possible coordinates within that aisle and a "best fit" position is returned. A major part of this app was designing the UI as in 8bit even though the animation was functional it was hard to interpret the store layout and where to go. We added numerous features to clarify this, such as animating the current path to the closest item, adding a pulse for the item we need to go to, and varying the sizes of the item points. See image above.
 
-```
-$ git clone https://github.com/couchbaselabs/ToDoLite-Android.git
-$ cd ToDoLite-Android
-```
+#Challenges we ran into
+Pathfinding algorithms!!!! We had no clue where to start with this except that one of our members had some prior experience with TSP and we had heard of A*. Understanding how exactly these algorithms worked and how to integrate it took a lot of time. We spent at least 40% of our time designing the UI. Figuring out how to represent the store layout and then actually making the bitmap took some time as well.
 
-## Build and run the app
+#Accomplishments that we're proud of
+Functional app that looks nice!
 
-* Import the project into Android Studio by selecting `build.gradle` or `settings.gradle` from the root of the project.
-* Run the app using the "play" or "debug" button.
+#What we learned
+A lot! Android development (We hadn't really developed in Android only knew Java from CS class and had some experience with Studio), Pathfinding Algorithms, Firebase integration.
 
-## Point to your own Sync Gateway
-
-1. [Download Sync Gateway](http://www.couchbase.com/nosql-databases/downloads#couchbase-mobile).
-2. Start Sync Gateway with the configuration file in the root of this project.
-
-    ```bash
-    ~/Downloads/couchbase-sync-gateway/bin/sync_gateway sync-gateway-config.json
-    ```
-
-3. Open **Application.java** and update the `SYNC_URL_HTTP` constant to point to your Sync Gateway instance.
-
-    ```java
-    private static final String SYNC_URL_HTTP = "http://localhost:4984/todolite";
-    ```
-
-    You can use the `adb reverse tcp:4984 tcp:4984` command to open the port access from the host to the Android emulator. This command is only available on devices running android 5.0+ (API 21).
-
-4. Log in with your Facebook account.
-5. Add lists and tasks and they should be visible on the Sync Gateway Admin UI on [http://localhost:4985/_admin/](http://localhost:4985/_admin/).
-
-## Community
-
-If you have any comments or suggestions, please join [our forum](https://forums.couchbase.com/c/mobile) and let us know.
-
-## License
-
-Released under the Apache license, 2.0.
-
-Copyright 2011-2014, Couchbase, Inc.
+#What's next for PinPoint
+Integrating the shopping list with another app such as Evernote so consumers can import lists. Actually finding real store layouts (they exist somewhere) and figuring out how to efficiently create bitmaps of each.
