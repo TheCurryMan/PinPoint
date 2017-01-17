@@ -18,7 +18,7 @@ After adding an item to the grocery list and clicking the start button to map th
 Pathfinding algorithms!!!! We had no clue where to start with this except that one of our members had some prior experience with TSP and we had heard of A*. Understanding how exactly these algorithms worked and how to integrate it took a lot of time. We spent at least 40% of our time designing the UI. Figuring out how to represent the store layout and then actually making the bitmap took some time as well.
 
 #Accomplishments that we're proud of
-Functional app that looks nice!
+Fully functional app that is based upon a local safeway. 
 
 #What we learned
 A lot! Android development (We hadn't really developed in Android only knew Java from CS class and had some experience with Studio), Pathfinding Algorithms, Firebase integration.
