@@ -25,3 +25,5 @@ A lot! Android development (We hadn't really developed in Android only knew Java
 
 #What's next for PinPoint
 Integrating the shopping list with another app such as Evernote so consumers can import lists. Actually finding real store layouts (they exist somewhere) and figuring out how to efficiently create bitmaps of each.
+
+well done
